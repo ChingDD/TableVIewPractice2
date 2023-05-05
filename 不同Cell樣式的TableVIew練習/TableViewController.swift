@@ -9,6 +9,8 @@ import UIKit
 
 class TableViewController: UITableViewController {
    
+    @IBOutlet weak var headerLabel: UILabel!
+    
     let userServices:[userService] = [
         userService(model: "alertModel", title: "", image: ""),
         userService(model: "serviceModel", title: "立即訂票", image: "立即訂票"),
@@ -16,6 +18,7 @@ class TableViewController: UITableViewController {
         userService(model: "serviceModel", title: "車次查詢", image: "車次查詢"),
         userService(model: "serviceModel", title: "車站列車動態", image: "車站列車動態")
     ]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 //        let backgroundView = UIView()
@@ -32,14 +35,16 @@ class TableViewController: UITableViewController {
 //        tableView.backgroundView = backgroundView
         
         let gradientLayer = CAGradientLayer()
-        gradientLayer.frame = tableView.bounds
+        
+        gradientLayer.frame = CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 597)
         gradientLayer.colors = [
-        CGColor(red: 1, green: 1, blue: 1, alpha: 1),
-        CGColor(red: 223/255, green: 234/255, blue: 246/255, alpha: 1),
+        CGColor(red: 223/255, green: 235/255, blue: 247/255, alpha: 1),
         CGColor(red: 1, green: 1, blue: 1, alpha: 1)
         ]
-        gradientLayer.locations = [0.03,0.03,0.7]
+        gradientLayer.locations = [0.6,0.8]
         tableView.layer.insertSublayer(gradientLayer, at: 0)
+        headerLabel.text = "  🔔 車廂寧靜宣導，共同維護乘車品質"
+        headerLabel.backgroundColor = .white
     }
 
     
@@ -112,14 +117,15 @@ class TableViewController: UITableViewController {
             return cell
         }
     }
-    
+    /*自訂header文字
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 0{
             return "🔔車廂寧靜宣導，共同維護乘車品質"
         }
         return ""
     }
-    
+    */
+    /*自訂header顏色
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         if section == 0{
             guard let header = view as? UITableViewHeaderFooterView else{
@@ -128,6 +134,7 @@ class TableViewController: UITableViewController {
             header.textLabel?.textColor = .black
         }
     }
+    */
     
     /*
     // Override to support conditional editing of the table view.
